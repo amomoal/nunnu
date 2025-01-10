@@ -1,0 +1,122 @@
+/* 全体リセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FAF3DD; /* クリーム色の背景 */
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* ヘッダー */
+header {
+    background-color: #800020; /* ワインレッド */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* メインコンテンツ */
+main {
+    padding: 20px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.block {
+    flex: 1;
+    margin: 0 10px;
+    padding: 20px;
+    background-color: #FFFDD0; /* クリーム色 */
+    border: 2px solid #D4AF37; /* ゴールド */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.details {
+    display: flex;
+    gap: 20px;
+}
+
+.text, .info {
+    flex: 1;
+    padding: 20px;
+    background-color: #FFFDD0; /* クリーム色 */
+    border: 2px solid #D4AF37; /* ゴールド */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* スライダー全体 */
+.slider {
+    width: 100%;
+    height: 400px; /* 必要に応じて高さを調整 */
+    overflow: hidden;
+    position: relative;
+}
+
+/* スライド部分 */
+.slides {
+    display: flex; /* 横並びにする */
+    transition: transform 0.5s ease-in-out; /* スムーズなアニメーション */
+}
+
+.slides div {
+    min-width: 100%; /* 各スライドの幅 */
+    height: 100%; /* スライダーの高さに合わせる */
+}
+
+/* 各スライドの画像 */
+.slides img {
+    width: 100%; /* 横幅いっぱいに広げる */
+    height: 100%; /* スライダーの高さに合わせる */
+    object-fit: cover; /* 画像を枠いっぱいに収める */
+}
+
+/* 矢印ボタン */
+button.prev, button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明の背景 */
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+button.prev {
+    left: 10px;
+}
+
+button.next {
+    right: 10px;
+}
+
