@@ -6,9 +6,25 @@ body {
     color: white;
     font-family: Arial, sans-serif;
     height: 100vh;
-    overflow: hidden;
-    position: relative;
+    overflow-x: hidden;
 }
+
+/* スクロール可能なダミーコンテナ */
+.scroll-container {
+    
+    position: relative;
+    width: 100%; /* 全幅 */
+    max-width: 800px; /* 最大幅を800pxに制限 */
+    margin: 0 auto; /* 中央揃え */
+    height: 100vh; /* 画面全体の高さ */
+    min-height: 100%;
+    font-size: 16px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+   
+
 
 /* 粒子の親コンテナ */
 .particle-container {
@@ -16,9 +32,12 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    min-height: 100vh;
     pointer-events: none;
+    z-index: -1; /* 背景に移動 */
 }
+
 
 /* 光の粒子 */
 .particle {
@@ -67,7 +86,7 @@ body {
 /* 光のレイヤー */
 .light-layer {
     position: absolute;
-    top: -50;
+    top: -150;
     left: -100%; /* スタート位置を画面の外に設定 */
     width: 200%;
     height: 200%;
@@ -115,6 +134,10 @@ body {
 /* キャラクターコンテナ */
 .character-container {
     position: relative;
+    width: 100vw;
+    height: 100vh;
+    top: 1%; 
+    left: -25%;
     display: inline-block;
     text-align: center;
     animation: fadeInCharacter 2s ease forwards;
@@ -122,92 +145,74 @@ body {
 
 /* キャラクター画像 */
 .character {
-    width: 50%;
+    width: 60%; /* 相対幅 */
+    max-width: 300px; /* 最大幅を設定 */
     height: auto;
     display: block;
-    margin: 100 auto; /* 中央揃え */
+    margin: 0 auto; /* 中央揃え */
     animation: fadeInOpacity 2s ease-in-out forwards; /* フェードインアニメーション */
 }
 
 /* セリフの吹き出し */
 .speech-bubble {
     position: absolute;
-    top: 30%; /* キャラクター画像の下 */
-    right: -30%;
+    width: 100vw;
+    height: 100vh;
+    top: 20%; 
+    left: 100%;
     transform: translateX(-50%) scale(0.5); /* 初期サイズ */
     opacity: 0;
-     
-    
-    color: #ffffff;
-    font-size: 18px;
-    
+    color: #ffffff90;
+    font-size: 1.2em;
     animation: fadeInFromLeft 2s ease forwards; /* 左からフェードイン */
     animation-delay: 2s;
 }
 
-/* キャラクターのフェードイン */
-@keyframes fadeInOpacity {
-    0% {
-        opacity: 0; /* 完全に透明 */
-    }
-    100% {
-        opacity: 2; /* 完全に不透明 */
-    }
-}
-
-/* セリフのフェードイン */
-@keyframes fadeInFromLeft {
-    0% {
-        opacity: 0; /* 完全に透明 */
-        transform: translateX(-50%) translateX(-50px); /* 左にオフセット */
-    }
-    100% {
-        opacity: 1; /* 完全に不透明 */
-        transform: translateX(-50%) translateX(0); /* 元の位置に移動 */
-    }
-}
-
-
 /* 左下のテキストボックス */
 .left-text-box {
-    position: absolute;
+    position: relative;
     bottom: 10%;
-    left: 10%;
+    top: -10%;
+    left: 3%;
     width: 200px;
-    
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
 }
 
 .left-text-box textarea {
     width: 100%;
     height: 80px;
     background: rgba(255, 255, 255, 0.1);
-    color: white;
+    color: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 5px;
     padding: 10px;
     resize: none;
-    font-size: 14px;
+    font-size: 1em;
     font-family: Arial, sans-serif;
     outline: none;
 }
 
 button {
-    padding: 8px 15px;
-    font-size: 16px;
-    background-color: #000101;
-    color: white;
+    padding: 6px 10px;
+    font-size: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.414);
+    background-color: #00010187;
+    color: rgba(255, 255, 255, 0.51);
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #d1dae3;
 }
 
 /* 右側のボックス */
@@ -219,11 +224,10 @@ button:hover {
     height: 250px; /* 固定の高さを設定（スクロール範囲を作る） */
     background: rgba(255, 255, 255, 0.1);
     color: white;
-    font-weight: 3;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    font-size: 10px;
+    font-size: 0.875em;
     overflow-y: auto; /* 縦方向にスクロール可能に */
     overflow-x: hidden; /* 横方向のスクロールを非表示 */
 }
@@ -240,6 +244,128 @@ button:hover {
     z-index: 5;
 }
 
-.hidden {
-    display: none;
+
+/* アニメーション */
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0; /* 完全に透明 */
+    }
+    100% {
+        opacity: 1; /* 完全に不透明 */
+    }
+}
+
+@keyframes fadeInFromLeft {
+    0% {
+        opacity: 0; /* 完全に透明 */
+        transform: translateX(-50%) translateX(-50px); /* 左にオフセット */
+    }
+    100% {
+        opacity: 1; /* 完全に不透明 */
+        transform: translateX(-50%) translateX(0); /* 元の位置に移動 */
+    }
+}
+
+
+.overlay {
+    display: none; /* 初期状態では非表示 */
+    text-align: center;
+    background: white; /* 真っ白な背景 */
+    color: black; /* テキストは黒 */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+/* メディアクエリ */
+
+@media (max-width: 620px) {
+
+    .parent {
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+
+    .speech-bubble {
+        left: 100%;
+        width: 100vw;
+        height: 100vh;
+        font-size: 90%;
+        top: 10%;
+    }
+
+    .character {
+        width: 70%; 
+        max-width: 300px;
+        top: 0%;
+        width: 95%;
+    }
+
+    .left-text-box {
+
+        top : calc(300px + 250px +0px);
+    }
+
+
+    .right-box {
+        height: 33%;
+        width: 90%;
+        left: 2%;
+        padding: 15px;
+       
+    }
+
+
+    .vertical-line {
+        display: none;
+    }
+
+    @media (min-width: 800px) {
+
+        .scroll-container {display: none;}
+       
+            .speech-bubble {
+                display: none;
+            }
+        
+            .character {
+                display: none;
+            }
+        
+            .left-text-box {
+                display: none;
+            }
+        
+        
+            .right-box {
+                display: none;
+               
+            }
+
+            .particle-container{
+                display: none;
+
+            }
+        
+        
+            .vertical-line {
+                display: none;
+            }
+
+            .overlay {
+                display: flex;
+                top: 0%;
+            }
+        
+
+        }
+    }
+
 }
