@@ -140,7 +140,7 @@ body {
     left: -25%;
     display: inline-block;
     text-align: center;
-    animation: fadeInCharacter 2s ease forwards;
+    animation: fadeInCharacter 4s ease forwards;
 }
 
 /* キャラクター画像 */
@@ -150,7 +150,8 @@ body {
     height: auto;
     display: block;
     margin: 0 auto; /* 中央揃え */
-    animation: fadeInOpacity 2s ease-in-out forwards; /* フェードインアニメーション */
+    opacity: 0.7;
+    animation: fadeInOpacity 4s ease-in-out forwards; /* フェードインアニメーション */
 }
 
 /* セリフの吹き出し */
