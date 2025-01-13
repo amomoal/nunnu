@@ -2,242 +2,131 @@
 body {
     margin: 0;
     padding: 0;
-    background: #000;
-    color: white;
     font-family: Arial, sans-serif;
     height: 100vh;
-    overflow-x: hidden;
+    background: #000;
+    color: white;
+    overflow-x: hidden; /* 横スクロールのみ無効化 */
+    overflow-y: auto; /* 縦スクロールを有効化 */
 }
 
-/* スクロール可能なダミーコンテナ */
-.scroll-container {
-    
-    position: relative;
-    width: 100%; /* 全幅 */
-    max-width: 800px; /* 最大幅を800pxに制限 */
-    margin: 0 auto; /* 中央揃え */
-    height: 100vh; /* 画面全体の高さ */
-    min-height: 100%;
-    font-size: 16px;
-    overflow-y: auto;
-    overflow-x: hidden;
+/* 背景エリア */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    min-height: 100vh; /* 必要なら高さを最低ビューポートに */
 }
 
-   
-
-
-/* 粒子の親コンテナ */
+/* 光の粒子 */
 .particle-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
-    min-height: 100vh;
+    height: 200%;
     pointer-events: none;
-    z-index: -1; /* 背景に移動 */
 }
 
-
-/* 光の粒子 */
 .particle {
     position: absolute;
     width: 60px;
     height: 60px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.695) 0%, rgba(255, 255, 255, 0) 80%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 80%);
     border-radius: 50%;
     filter: blur(15px);
-    opacity: 0; /* 最初は透明 */
     animation: float 8s infinite ease-in-out, fade 8s infinite ease-in-out alternate;
 }
 
-/* 漂う動き */
-@keyframes float {
-    0% {
-        transform: translate(0, 0);
-    }
-    25% {
-        transform: translate(20px, -30px);
-    }
-    50% {
-        transform: translate(-20px, 20px);
-    }
-    75% {
-        transform: translate(30px, 10px);
-    }
-    100% {
-        transform: translate(0, 0);
-    }
-}
-
-/* フェードイン・アウト */
-@keyframes fade {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 0.8;
-    }
-    100% {
-        opacity: 0;
-    }
-}
-
-/* 光のレイヤー */
 .light-layer {
     position: absolute;
-    top: -150;
-    left: -100%; /* スタート位置を画面の外に設定 */
+    top: -50%;
+    left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at 10% 50%, rgba(255, 255, 255, 0.414) 0%, rgba(255, 255, 255, 0) 80%);
-    transform: skewX(-30deg); /* 水面の反射っぽい歪み */
-    animation: moveLight 8s linear infinite;
-    pointer-events: none;
-    opacity: 0.6; /* 光の柔らかさを調整 */
-}
-
-/* 光の動き */
-@keyframes moveLight {
-    0% {
-        left: -110%;
-    }
-    50% {
-        left: -50%;
-    }
-    100% {
-        left: -110%;
-    }
-}
-
-
-/* 波の揺れ */
-@keyframes waterEffect {
-    0% {
-        transform: skewX(-30deg) translateY(-20px);
-    }
-    50% {
-        transform: skewX(-30deg) translateY(-20px); /* 垂直方向に揺れる */
-    }
-    100% {
-        transform: skewX(-30deg) translateY(-20px);
-    }
-}
-
-/* 水面の動き */
-.light-layer {
+    background: radial-gradient(circle at 10% 50%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
+    transform: skewX(-30deg);
     animation: moveLight 8s linear infinite, waterEffect 4s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+/* グリッドレイアウト */
+.grid-container {
+    display: grid;
+    grid-template-areas:
+    "chara chara chara"
+    "info info info"
+    "leftbox iii rightbox";
+    grid-template-columns: 25fr 1fr 30fr;
+    grid-template-rows: auto auto auto;
+    width: 97%;
+    max-width: 800px;
+    margin: auto;
+    height: auto;
 }
 
 
+/*oooooooooooooooooooooooooooooo*/
 
-/* キャラクターコンテナ */
+/* キャラクターエリア */
+
 .character-container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    top: 1%; 
-    left: -25%;
-    display: inline-block;
-    text-align: center;
+    grid-area: chara;
+    display: flex;
+    justify-content: left;
+    align-items: center;
     animation: fadeInCharacter 4s ease forwards;
 }
 
-/* キャラクター画像 */
 .character {
-    width: 60%; /* 相対幅 */
-    max-width: 300px; /* 最大幅を設定 */
-    height: auto;
-    display: block;
-    margin: 0 auto; /* 中央揃え */
-    opacity: 0.7;
+    width: 60vw; /* ブラウザ幅の20%を画像の幅に設定 */
+    max-width: 480px;
+    height: auto; /* アスペクト比を維持 */
     animation: fadeInOpacity 4s ease-in-out forwards; /* フェードインアニメーション */
 }
 
-/* セリフの吹き出し */
+/* セリフエリア */
 .speech-bubble {
-    position: absolute;
+    position: absolute; 
+    top: 15%;
+    left: 100%; 
     width: 100vw;
     height: 100vh;
-    top: 20%; 
-    left: 100%;
+    font-size: 1.2em;
+    text-align: left;
+    color: #ffffff90;
     transform: translateX(-50%) scale(0.5); /* 初期サイズ */
     opacity: 0;
-    color: #ffffff90;
-    font-size: 1.2em;
     animation: fadeInFromLeft 2s ease forwards; /* 左からフェードイン */
     animation-delay: 2s;
 }
 
-/* 左下のテキストボックス */
-.left-text-box {
-    position: relative;
-    bottom: 10%;
-    top: -10%;
-    left: 3%;
-    width: 200px;
-    height: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+
+.character-info {
+    grid-area: info; /* グリッドレイアウトで配置 */
+    margin-top: -20px; /* キャラクター画像との間隔 */
+    height: auto;
+    text-align: center; /* 中央揃え */
+    z-index: 5;
 }
 
-.left-text-box textarea {
-    width: 100%;
-    height: 80px;
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 5px;
-    padding: 10px;
-    resize: none;
-    font-size: 1em;
-    font-family: Arial, sans-serif;
-    outline: none;
+.sen {
+    width: 100vw; /* ブラウザ幅の20%を画像の幅に設定 */
+    max-width: 800px;
+    vertical-align: middle; /* ベースラインを無効化 */
+    height: auto; /* アスペクト比を維持 */
 }
 
-button {
-    padding: 6px 10px;
-    font-size: 10px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.414);
-    background-color: #00010187;
-    color: rgba(255, 255, 255, 0.51);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
-button:hover {
-    background-color: #d1dae3;
-}
-
-/* 右側のボックス */
-.right-box {
-    position: absolute;
-    top: 50%; /* 吹き出しやキャラクターから十分下に配置 */
-    left: 52%;
-    width: 250px;
-    height: 250px; /* 固定の高さを設定（スクロール範囲を作る） */
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    font-size: 0.875em;
-    overflow-y: auto; /* 縦方向にスクロール可能に */
-    overflow-x: hidden; /* 横方向のスクロールを非表示 */
-}
+/* キャラクターエリア 下段*/
 
 /* 縦の白い線 */
 .vertical-line {
-    position: absolute;
-    top: calc(50%);
-    left: 50%;
+    align-items: right;
+    top: 50px;
     width: 2px;
     height: 300px;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
@@ -245,6 +134,107 @@ button:hover {
     z-index: 5;
 }
 
+/* 右側ボックス */
+.right-box {
+    grid-area: rightbox;
+    text-align: left; 
+    width: 90%; /* 固定幅を指定 */
+    height: 300px; 
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 0.8em;
+    color: rgba(246, 246, 246, 0.769);
+    padding: 5px;
+    border-radius: 10px;
+    overflow-y: auto; /* 縦方向にスクロール可能に */
+    overflow-x: hidden; 
+}
+
+/* 左のコンテンツ全体 */
+
+.left-container {
+    grid-area: leftbox; /* グリッドエリアで配置 */
+    display: flex;
+    flex-direction: column;
+    
+    gap: 10px; /* 要素間の余白 */
+}
+
+/* 新しいヘッダー部分 */
+.left-header {
+    text-align: center; /* 左揃え */
+    gap: 10px;
+    width: auto; /* 固定幅を指定 */
+    height: 300px; 
+    max-width: 90%; /* 親要素に収まるよう制限 */
+    font-size: 0.6em;
+    color: rgba(246, 246, 246, 0.769);
+    border: 2px solid rgba(30, 29, 29, 0.307); /* 枠の太さ、スタイル、色 */
+    border-radius: 8px; /* 角を丸める */
+
+}
+
+
+/* 中央テキストボックス センターライン*/
+.text-box {
+    grid-area: iii;
+    padding: 0px;
+    border-radius: 10px;
+}
+
+/* コピーテキストボックス */
+.left-text-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: auto; /* 固定幅を指定 */
+    height: 20px; 
+    max-width: 90%; /* 親要素に収まるよう制限 */
+}
+
+.left-text-box textarea {
+    width: 100%;
+    height: 80px;
+    font-size: 0.3em;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.left-text-box button {
+    padding: 5px 10px;
+    background: #555;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.left-text-box button:hover {
+    background: #777;
+}
+
+/* アニメーション */
+@keyframes float {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(20px, -30px); }
+    50% { transform: translate(-20px, 20px); }
+    75% { transform: translate(30px, 10px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes fade {
+    0% { opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+@keyframes moveLight {
+    0% { left: -110%; }
+    50% { left: -50%; }
+    100% { left: -110%; }
+}
 
 /* アニメーション */
 @keyframes fadeInOpacity {
@@ -267,106 +257,50 @@ button:hover {
     }
 }
 
-
-.overlay {
-    display: none; /* 初期状態では非表示 */
-    text-align: center;
-    background: white; /* 真っ白な背景 */
-    color: black; /* テキストは黒 */
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@keyframes waterEffect {
+    0% { transform: skewX(-30deg) translateY(-20px); }
+    50% { transform: skewX(-30deg) translateY(-10px); }
+    100% { transform: skewX(-30deg) translateY(-20px); }
 }
 
 
-
-
-/* メディアクエリ */
-
-@media (max-width: 620px) {
-
-    .parent {
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
+@media (max-width: 500px) { 
+    .grid-container {
+        grid-template-areas:
+          "chara"
+          "info"
+          "rightbox"
+          "leftbox"; 
+        grid-template-columns: 1fr; 
+      }
+      .left-header {
+        grid-area: leftbox; /* グリッドエリアで配置 */
+        width: 100%;
+        height: 150px;
+        overflow-y: auto; 
+        overflow-x: hidden; 
     }
 
-
-    .speech-bubble {
-        left: 100%;
-        width: 100vw;
-        height: 100vh;
-        font-size: 90%;
-        top: 10%;
+      .text-box {
+        display: none;
     }
-
-    .character {
-        width: 70%; 
-        max-width: 300px;
-        top: 0%;
-        width: 95%;
-    }
-
-    .left-text-box {
-
-        top : calc(300px + 250px +0px);
-    }
-
-
-    .right-box {
-        height: 33%;
-        width: 90%;
-        left: 2%;
-        padding: 15px;
-       
-    }
-
-
     .vertical-line {
         display: none;
     }
-
-    @media (min-width: 800px) {
-
-        .scroll-container {display: none;}
-       
-            .speech-bubble {
-                display: none;
-            }
-        
-            .character {
-                display: none;
-            }
-        
-            .left-text-box {
-                display: none;
-            }
-        
-        
-            .right-box {
-                display: none;
-               
-            }
-
-            .particle-container{
-                display: none;
-
-            }
-        
-        
-            .vertical-line {
-                display: none;
-            }
-
-            .overlay {
-                display: flex;
-                top: 0%;
-            }
-        
-
-        }
+    .speech-bubble {    
+        top: 5%;
+        left: 45%; 
+          font-size: 0.9em;
+          text-align: right;
+      
     }
+
+  }
+
+  @media (min-width: 800px) {.speech-bubble {    
+    top: 15%;
+    left: 100%; 
+  
+}
 
 }
