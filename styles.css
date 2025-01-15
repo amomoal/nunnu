@@ -153,7 +153,7 @@ body {
   
   /* レスポンシブ対応 */
   @media screen and (max-width: 768px) {
-    .slide {
+    .slider {
         height: 200px; /* スライダーの高さを縮小 */
       }
     .content {
@@ -167,7 +167,7 @@ body {
   }
   
   @media screen and (max-width: 480px) {
-    .slide {
+    .slider {
         height: 150px; 
       }
     .grid-links {
