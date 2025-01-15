@@ -19,7 +19,6 @@ body {
     height: 100%;
     z-index: -1;
     min-height: 100vh; /* 必要なら高さを最低ビューポートに */
-    overflow-x: hidden;
 }
 
 /* 光の粒子 */
@@ -52,7 +51,7 @@ body {
     transform: skewX(-30deg);
     animation: moveLight 8s linear infinite, waterEffect 4s ease-in-out infinite;
     opacity: 0.6;
-    overflow-x: hidden;
+overflow-x: hidden;
 }
 
 /* グリッドレイアウト */
@@ -68,7 +67,6 @@ body {
     max-width: 800px;
     margin: auto;
     height: auto;
-    overflow-x: hidden;
 }
 
 
