@@ -168,9 +168,7 @@ body {
   
   @media screen and (max-width: 480px) {
     .slider {
-        height: 150px; 
+        height: 2000px; 
       }
-    .grid-links {
-      grid-template-columns: 1fr; /* 縦並びに変更 */
-    }
+   
   }
