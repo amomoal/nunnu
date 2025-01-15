@@ -45,7 +45,7 @@ body {
     position: absolute;
     top: -50%;
     left: -50%;
-    width: 100%;
+    width: 200%;
     height: 200%;
     background: radial-gradient(circle at 10% 50%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
     transform: skewX(-30deg);
@@ -68,8 +68,6 @@ body {
     max-width: 800px;
     margin: auto;
     height: auto;
-    overflow-x: hidden; /* 横スクロールのみ無効化 */
-    overflow-y: auto; /* 縦スクロールを有効化 */
 }
 
 
@@ -157,6 +155,7 @@ body {
     border-radius: 10px;
     overflow-y: auto; /* 縦方向にスクロール可能に */
     overflow-x: hidden; 
+    z-index: 7;
 }
 
 /* 左のコンテンツ全体 */
@@ -286,8 +285,6 @@ body {
         grid-area: leftbox; /* グリッドエリアで配置 */
         width: 100%;
         height: 150px;
-        overflow-y: auto; 
-        overflow-x: hidden; 
     }
 
       .text-box {
