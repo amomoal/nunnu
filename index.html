@@ -1,48 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>テンプレートサイト</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>統合レイアウト</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>サイトタイトル</h1>
-        <nav>
-            <ul>
-                <li><a href="#">ホーム</a></li>
-                <li><a href="#">コンテンツ</a></li>
-                <li><a href="#">お問い合わせ</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <div class="slider">
-            <div class="slides">
-                <div><a href="https://example.com/link1"><img src="image/eri.png"></a></div>
-                <div><a href="https://example.com/link2"><img src="image/elian.png" alt="画像2"></a></div>
-                <div><a href="https://example.com/link3"><img src="image/p1.jpg" alt="画像3"></a></div>
-            </div>
-            <!-- 矢印ボタン -->
-            <button class="prev" onclick="prevSlide()">&#10094;</button>
-            <button class="next" onclick="nextSlide()">&#10095;</button>
+  <div class="container">
+    <!-- スライダー -->
+    <div class="slider">
+      <div class="slides">
+        <div class="slide">
+          <img src="image/eri.png" alt="Image 1">
         </div>
-        
-       
+        <div class="slide">
+          <img src="image/elian.png" alt="Image 2">
+        </div>
+        <div class="slide">
+          <img src="image/p1.png" alt="Image 3">
+        </div>
+      </div>
+      <div class="controls">
+        <button class="control prev">←</button>
+        <button class="control next">→</button>
+      </div>
+    </div>
 
-        <section class="details">
-            <div class="text"> ><a href="main.html">エリエーヌ</a></div>
-            <div class="info"><a href="main2.html">エリアン</a>
-            </a>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 サイトのフッター</p>
-    </footer>
-    <script src="script.js"></script>
+    <!-- A～Dリンク部分 -->
+    <div class="grid-links">
+      <div class="grid-item">
+        <a href="main.html">
+        <img src="image/minielie2.png" alt="A">
+        <img src="image/minielie.png" alt="A Hover">
+        </a>
+      </div>
+      <div class="grid-item">
+        <a href="main2.html">
+        <img src="image/minielian.png" alt="B">
+        <img src="image/minielian2.png" alt="B Hover">
+        </a>
+      </div>
+      <div class="grid-item">
+        <a href="main3.html">
+        <img src="image-c.jpg" alt="C">
+        <img src="image-c-hover.jpg" alt="C Hover">
+        </a>
+      </div>
+      <div class="grid-item">
+        <a href="main4.html">
+        <img src="image-d.jpg" alt="D">
+        <img src="image-d-hover.jpg" alt="D Hover">
+        </a>
+      </div>
+    </div>
+
+    <!-- コンテンツエリア -->
+    <div class="content">
+      <div class="info">Infoコンテンツ</div>
+      <div class="main">Mainコンテンツ</div>
+      <div class="sub">Subコンテンツ</div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="footer">フッターエリア</footer>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

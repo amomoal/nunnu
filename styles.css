@@ -1,0 +1,176 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    background: linear-gradient(to right, #151515, #151515);
+    color: white; /* テキストを白色に */
+    font-family: Arial, sans-serif; /* フォント */
+    margin: 0;               /* 余白のリセット */
+    padding: 0;              /* 余白のリセット */
+  }
+
+  
+  /* 全体レイアウト */
+.container {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas:
+      "slider"
+      "links"
+      "content"
+      "footer";
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  
+  /* スライダー */
+  .slider {
+    grid-area: slider;
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    background: linear-gradient(to right, #616161, #121212, #616161); /* 両端→真ん中→両端 */
+  }
+
+  .slide img {
+    max-width: 100%;       /* 画像がスライドの幅を超えない */
+    max-height: 100%;      /* 画像がスライドの高さを超えない */
+    object-fit: contain;   /* アスペクト比を保ちながら収まる */
+  }
+  
+  .slides {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  .slide {
+    min-width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #151515, #000000, #151515); /* 両端→真ん中→両端 */
+  }
+
+  .controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+  }
+
+  .control {
+    background-color: rgba(56, 56, 56, 0.225);
+    color: white;
+    border: none;
+    padding: 20px 10px;
+    cursor: pointer;
+  }
+  
+/* A～D部分 */
+.grid-links {
+    grid-area: links;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    justify-items: center; /* 横方向の中央揃え */
+    align-items: center;   /* 縦方向の中央揃え */
+  }
+  
+  .grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .grid-item img {
+    max-width: 100%;       /* 親要素の幅に収まる */
+    max-height: 150px;     /* 高さ制限 */
+    object-fit: contain;   /* アスペクト比を維持 */
+    transition: opacity 0.3s ease;
+  }
+  
+  .grid-item img:last-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0; /* 初期状態で非表示 */
+  }
+  
+  .grid-item:hover img:last-child {
+    opacity: 1; /* ホバー時に表示 */
+  }
+  
+  .grid-item:hover img:first-child {
+    opacity: 0; /* ホバー時に非表示 */
+  }
+  
+  
+  
+  /* Info、Main、Sub */
+  .content {
+    grid-area: content;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* メインとサブを横並びに */
+    grid-template-rows: auto auto; /* InfoとSubを縦並びに */
+    grid-template-areas:
+      "info main"
+      "sub main";
+    gap: 10px;
+  }
+  
+  .info {
+    grid-area: info;
+    background-color: #eee;
+    padding: 10px;
+  }
+  
+  .main {
+    grid-area: main;
+    background-color: #ddd;
+    padding: 10px;
+  }
+  
+  .sub {
+    grid-area: sub;
+    background-color: #ccc;
+    padding: 10px;
+  }
+  
+  /* フッター */
+  .footer {
+    grid-area: footer;
+    background-color: #bbb;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  /* レスポンシブ対応 */
+  @media screen and (max-width: 768px) {
+    .slide {
+        height: 200px; /* スライダーの高さを縮小 */
+      }
+    .content {
+      grid-template-columns: 1fr; /* 縦並びに変更 */
+      grid-template-rows: auto auto auto;
+      grid-template-areas:
+        "info"
+        "main"
+        "sub";
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .slide {
+        height: 150px; 
+      }
+    .grid-links {
+      grid-template-columns: 1fr; /* 縦並びに変更 */
+    }
+  }

@@ -45,13 +45,12 @@ body {
     position: absolute;
     top: -50%;
     left: -50%;
-    width: 100%;
+    width: 200%;
     height: 200%;
     background: radial-gradient(circle at 10% 50%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
     transform: skewX(-30deg);
     animation: moveLight 8s linear infinite, waterEffect 4s ease-in-out infinite;
     opacity: 0.6;
-overflow-x: hidden;
 }
 
 /* グリッドレイアウト */
@@ -67,8 +66,6 @@ overflow-x: hidden;
     max-width: 800px;
     margin: auto;
     height: auto;
-    overflow-x: hidden; 
-    overflow-y: auto;
 }
 
 
