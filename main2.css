@@ -68,6 +68,8 @@ body {
     max-width: 800px;
     margin: auto;
     height: auto;
+    overflow-x: hidden; /* 横スクロールのみ無効化 */
+    overflow-y: auto; /* 縦スクロールを有効化 */
 }
 
 
