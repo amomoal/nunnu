@@ -1,307 +1,171 @@
-/* 全体のスタイル */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    height: 100vh;
-    background: #000;
-    color: white;
-    overflow-x: hidden; /* 横スクロールのみ無効化 */
-    overflow-y: auto; /* 縦スクロールを有効化 */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: rgba(246, 246, 246, 0.769);
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-/* 背景エリア */
+.container {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    min-height: 100vh; /* 必要なら高さを最低ビューポートに */
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgb(0, 0, 0));
 }
 
-/* 光の粒子 */
-.particle-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+.background__particles {
+  display: grid;
+  width: 100%;
+  height: 100%;
 }
 
-.particle {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 80%);
-    border-radius: 50%;
-    filter: blur(15px);
-    animation: float 8s infinite ease-in-out, fade 8s infinite ease-in-out alternate;
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(20px, -30px);
+  }
+  50% {
+    transform: translate(-20px, 20px);
+  }
+  75% {
+    transform: translate(30px, 10px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
-
-.light-layer {
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 10% 50%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
-    transform: skewX(-30deg);
-    animation: moveLight 8s linear infinite, waterEffect 4s ease-in-out infinite;
-    opacity: 0.6;
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
 }
-
-/* グリッドレイアウト */
-.grid-container {
-    display: grid;
-    grid-template-areas:
-    "chara chara chara"
-    "info info info"
-    "leftbox iii rightbox";
-    grid-template-columns: 25fr 1fr 30fr;
-    grid-template-rows: auto auto auto;
-    width: 97%;
-    max-width: 800px;
-    margin: auto;
-    height: auto;
-}
-
-
-/*oooooooooooooooooooooooooooooo*/
-
-/* キャラクターエリア */
-
-.character-container {
-    grid-area: chara;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    animation: fadeInCharacter 4s ease forwards;
+.wrapper {
+  width: 90%;
+  max-width: 800px;
+  display: grid;
+  grid-template-areas: "character" "info" "content";
+  grid-template-columns: 1fr;
 }
 
 .character {
-    width: 100vw; /* ブラウザ幅の20%を画像の幅に設定 */
-    max-width: 800px;
-    height: auto; /* アスペクト比を維持 */
-    animation: fadeInOpacity 4s ease-in-out forwards; /* フェードインアニメーション */
+  grid-area: character;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-/* セリフエリア */
-.speech-bubble {
-    position: absolute; 
-    top: 15%;
-    left: 100%; 
-    width: 100vw;
-    height: 100vh;
-    font-size: 1.2em;
-    text-align: left;
-    color: #ffffff00;
-    transform: translateX(-50%) scale(0.5); /* 初期サイズ */
-    opacity: 0;
-    animation: fadeInFromLeft 2s ease forwards; /* 左からフェードイン */
-    animation-delay: 2s;
+.character__image {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
-
 
 .character-info {
-    grid-area: info; /* グリッドレイアウトで配置 */
-    margin-top: -20px; /* キャラクター画像との間隔 */
-    height: auto;
-    text-align: center; /* 中央揃え */
-    z-index: 5;
+  grid-area: info;
+  text-align: center;
+}
+.character-info__image {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
 }
 
-.sen {
-    width: 100vw; /* ブラウザ幅の20%を画像の幅に設定 */
-    max-width: 800px;
-    vertical-align: middle; /* ベースラインを無効化 */
-    height: auto; /* アスペクト比を維持 */
+.content {
+  grid-area: content;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
 }
 
-
-/* キャラクターエリア 下段*/
-
-/* 縦の白い線 */
-.vertical-line {
-    align-items: right;
-    top: 50px;
-    width: 2px;
-    height: 300px;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
-    transform: translateX(-50%);
-    z-index: 5;
+.left-box {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 10px;
+  min-height: 300px;
+}
+.left-box__header {
+  flex-grow: 1;
+  min-height: 50px;
+  width: 100%;
+  text-align: left;
+}
+.left-box__content {
+  flex-grow: 2;
+  width: 100%;
+  padding: 10px;
+  background: rgba(242, 242, 242, 0.1);
+}
+.left-box__footer {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
-/* 右側ボックス */
-.right-box {
-    grid-area: rightbox;
-    text-align: left; 
-    width: 90%; /* 固定幅を指定 */
-    height: 300px; 
-    background: rgba(255, 255, 255, 0.1);
-    font-size: 0.8em;
-    color: rgba(246, 246, 246, 0.769);
-    padding: 5px;
-    border-radius: 10px;
-    overflow-y: auto; /* 縦方向にスクロール可能に */
-    overflow-x: hidden; 
+.copy-box {
+  width: 100%;
+  max-width: 100%;
+  flex-shrink: 1;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.copy-box__textarea {
+  width: 100%;
+  max-width: 100%;
+  height: 40px;
+  font-size: 0.9em;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(246, 246, 246, 0.769);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+.copy-box__button {
+  padding: 5px 10px;
+  background: #555;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+.copy-box__button:hover {
+  background: #777;
 }
 
-/* 左のコンテンツ全体 */
-
-.left-container {
-    grid-area: leftbox; /* グリッドエリアで配置 */
-    display: flex;
-    flex-direction: column;
-    
-    gap: 10px; /* 要素間の余白 */
-}
-
-/* 新しいヘッダー部分 */
-.left-header {
-    text-align: left; /* 左揃え */
-    gap: 20px;
-    width: auto; /* 固定幅を指定 */
-    height: 300px; 
-    max-width: 90%; /* 親要素に収まるよう制限 */
-    font-size: 0.6em;
-    color: rgba(246, 246, 246, 0.769);
-    border: 2px solid rgba(30, 29, 29, 0.307); /* 枠の太さ、スタイル、色 */
-    border-radius: 8px; /* 角を丸める */
-
-}
-
-
-/* 中央テキストボックス センターライン*/
-.text-box {
-    grid-area: iii;
-    padding: 0px;
-    border-radius: 10px;
-}
-
-/* コピーテキストボックス */
-.left-text-box {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: auto; /* 固定幅を指定 */
-    height: 20px; 
-    max-width: 90%; /* 親要素に収まるよう制限 */
-}
-
-.left-text-box textarea {
-    width: 100%;
-    height: 80px;
-    font-size: 0.3em;
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.left-text-box button {
-    padding: 5px 10px;
-    background: #555;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-}
-
-.left-text-box button:hover {
-    background: #777;
-}
-
-/* アニメーション */
-@keyframes float {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(20px, -30px); }
-    50% { transform: translate(-20px, 20px); }
-    75% { transform: translate(30px, 10px); }
-    100% { transform: translate(0, 0); }
-}
-
-@keyframes fade {
-    0% { opacity: 0; }
-    50% { opacity: 0.8; }
-    100% { opacity: 0; }
-}
-
-@keyframes moveLight {
-    0% { left: -110%; }
-    50% { left: -50%; }
-    100% { left: -110%; }
-}
-
-/* アニメーション */
-@keyframes fadeInOpacity {
-    0% {
-        opacity: 0; /* 完全に透明 */
-    }
-    100% {
-        opacity: 1; /* 完全に不透明 */
-    }
-}
-
-@keyframes fadeInFromLeft {
-    0% {
-        opacity: 0; /* 完全に透明 */
-        transform: translateX(-50%) translateX(-50px); /* 左にオフセット */
-    }
-    100% {
-        opacity: 1; /* 完全に不透明 */
-        transform: translateX(-50%) translateX(0); /* 元の位置に移動 */
-    }
-}
-
-@keyframes waterEffect {
-    0% { transform: skewX(-30deg) translateY(-20px); }
-    50% { transform: skewX(-30deg) translateY(-10px); }
-    100% { transform: skewX(-30deg) translateY(-20px); }
-}
-
-
-@media (max-width: 500px) { 
-    .grid-container {
-        grid-template-areas:
-          "chara"
-          "info"
-          "rightbox"
-          "leftbox"; 
-        grid-template-columns: 1fr; 
-      }
-      .left-header {
-        grid-area: leftbox; /* グリッドエリアで配置 */
-        width: 100%;
-        height: 150px;
-        overflow-y: auto; 
-        overflow-x: hidden; 
-    }
-
-      .text-box {
-        display: none;
-    }
-    .vertical-line {
-        display: none;
-    }
-    .speech-bubble {    
-        top: 5%;
-        left: 45%; 
-          font-size: 0.9em;
-          text-align: right;
-      
-    }
-
-  }
-
-  @media (min-width: 800px)
-   {.speech-bubble {    
-    top: 15%;
-    left: 100%; 
-  
-}
-
-}
+.box--right {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 10px;
+}/*# sourceMappingURL=main.css.map */
