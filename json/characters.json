@@ -1,0 +1,31 @@
+{
+  "defaultCharacter": "eli",
+  "characters": {
+    "eli": {
+      "mainImage": "images/elie.jpg",
+      "background": "images/bgeli.webp",
+      "buttonImage": "images/minielie2.png",
+      "defaultButtonImage": "images/minielie.png"
+    },
+    "elian": {
+      "mainImage": "images/elia.png",
+      "background": "images/bgeli.webp",
+      "buttonImage": "images/minielian2.png",
+      "defaultButtonImage": "images/minielian.png"
+    },
+    "anje": {
+      "mainImage": "images/anje.webp",
+      "background": "images/bganje.webp",
+      "buttonImage": "images/minianje2.png",
+      "defaultButtonImage": "images/minianje.png"
+    },
+    "vins": {
+      "mainImage": "images/vins2.webp",
+      "background": "images/bgvin.webp",
+      "buttonImage": "images/minivin2.png",
+      "defaultButtonImage": "images/minivin.png"
+    }
+  }
+}
+
+  

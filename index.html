@@ -1,71 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>統合レイアウト</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
+  <!-- meta情報 -->
+  <title>CodeUps</title>
+  <meta name="description" content="" />
+
+
+  <!-- ファビコン -->
+  <link rel="icon" href="favicon.ico">
+
+  <!-- css -->
+  <link rel="stylesheet" href="./css/styles.css">
+
+
+  
+<!-- SwiperのCSS（CDN） -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<!-- SwiperのJS（CDN） -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- 自作の `script.js` はこの後に読み込む -->
+<script type="module" src="./js/script.js"></script>
+
 </head>
 <body>
+
+  <div class="inner">
+
+    <div class="site-container">
+
+    <!-- アイキャッチ -->
+     <div class="background" id="background">
+
+       <div class="eyecatch">
+
+      <!-- メイン画像エリア -->
+        <div class="main-image">
+        <img src="images/vins2.webp" alt="メインキャラ" id="mainImage"> 
+        </div>
+        </div>
+
+      <!-- キャラ選択ボタン（JSで動的に追加） -->
+        <div class="button-container"></div>
+
+        <div class="logo-container">
+          <img src="images/logo.webp" alt="サイトロゴ">
+        </div>
+
+      <!-- Newsセクション -->
+      <section class="news-section">
+        <div class="news-title">
+          <h2>NEWS</h2>
+          <p>最新情報</p>
+        </div>
+        <ul class="news-list"></ul> <!-- JSでここにニュースを追加！ -->
+        <div class="news-more">
+          <a href="#">★ MORE</a>
+        </div>
+      </section>
+      
+      
+
+
   <div class="container">
-    <!-- スライダー -->
-    <div class="slider">
-      <div class="slides">
-        <div class="slide">
-          <img src="image/eri.png" alt="Image 1">
-        </div>
-        <div class="slide">
-          <img src="image/elian.png" alt="Image 2">
-        </div>
-        <div class="slide">
-          <img src="image/p1.png" alt="Image 3">
-        </div>
-      </div>
-      <div class="controls">
-        <button class="control prev">←</button>
-        <button class="control next">→</button>
-      </div>
-    </div>
-
-    <!-- A～Dリンク部分 -->
-    <div class="grid-links">
-      <div class="grid-item">
-        <a href="main.html" class="delayed-link">
-        <img src="image/minielie.png" alt="A">
-        <img src="image/minielie2.png" alt="A Hover">
-        </a>
-      </div>
-      <div class="grid-item">
-        <a href="main2.html" class="delayed-link">
-        <img src="image/minielian.png" alt="B">
-        <img src="image/minielian2.png" alt="B Hover">
-        </a>
-      </div>
-      <div class="grid-item">
-        <a href="main3.html">
-        <img src="image-c.jpg" alt="C">
-        <img src="image-c-hover.jpg" alt="C Hover">
-        </a>
-      </div>
-      <div class="grid-item">
-        <a href="main4.html">
-        <img src="image-d.jpg" alt="D">
-        <img src="image-d-hover.jpg" alt="D Hover">
-        </a>
-      </div>
-    </div>
-
-    <!-- コンテンツエリア -->
-    <div class="content">
-      <div class="info">ピックアップ　スマホディレイ</div>
-      <div class="main">ディレイなし　ピックアップ　キャラクター他　画像、プログラム用プロンプト</div>
-      <div class="sub">未定　メモ書き他　下層ページに戻るボタン入れる。</div>
-    </div>
-
-    <!-- フッター -->
-    <footer class="footer">フッターエリア　未定</footer>
+    <div class="item">Item 1</div>
+    <div class="item">Item 2</div>
+    <div class="item">Item 3</div>
+    <div class="item">Item 4</div>
   </div>
 
-  <script src="script.js"></script>
+
+<!-- フッター -->
+<footer class="footer">
+  <img src="images/footer.jpg" alt="フッター画像">
+</footer>
+</div>
+</div>
+</div>
 </body>
+
 </html>

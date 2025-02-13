@@ -1,0 +1,400 @@
+@charset "UTF-8";
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default padding */
+ul,
+ol {
+  padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Set core root defaults */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul,
+ol {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+  width: 100%;
+}
+
+/* Natural flow and rhythm in articles by default */
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Blur images when they have no alt attribute */
+img:not([alt]) {
+  filter: blur(10px);
+}
+
+/* フォームリセット */
+input,
+button,
+select,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  font: inherit;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  display: none;
+}
+
+input[type=submit],
+input[type=button],
+label,
+button,
+select {
+  cursor: pointer;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+body {
+  font-family: "";
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 1.4545454545vw;
+  }
+}
+
+html {
+  font-size: 16px;
+}
+@media (max-width: 375px) {
+  html {
+    font-size: 4.2666666667vw;
+  }
+}
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 1.4545454545vw;
+  }
+}
+@media (min-width: 1100px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* pcの電話番号発信対応 */
+@media screen and (min-width: 768px) {
+  a[href^="tel:"] {
+    pointer-events: none;
+  }
+}
+
+/* ホバー */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s;
+}
+@media screen and (min-width: 768px) {
+  a:hover {
+    opacity: 0.8;
+  }
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  transition: background-image 0.5s ease-in-out;
+}
+
+.u-desktop {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .u-desktop {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .u-mobile {
+    display: none;
+  }
+}
+
+.footer {
+  width: 100%;
+  height: auto;
+  margin-top: auto; /* ← これでフッターを一番下に */
+}
+
+.footer img {
+  width: 100%; /* 横幅いっぱいに */
+  height: auto; /* アスペクト比を維持 */
+  display: block; /* 不要な余白を削除 */
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.site-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* ヘッダー / メイン / フッター */
+  min-height: 100vh; /* ← `height` ではなく `min-height` を使う */
+  width: 100%;
+}
+
+.logo-container {
+  width: 100%;
+  text-align: center; /* ロゴを中央揃え */
+  margin-top: 5px; /* ボタンとの間隔を調整 */
+}
+
+.logo-container img {
+  width: 100%;
+  height: auto;
+}
+
+.news-section {
+  width: 100%;
+  max-width: 800px; /* PC時の最大幅 */
+  margin: 50px auto;
+  text-align: center;
+  color: white;
+  font-family: "serif";
+}
+
+/* NEWSタイトル */
+.news-title h2 {
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: white; /* デフォルトの文字色 */
+  background: linear-gradient(90deg, #fce567, #f7d674);
+  text-align: center;
+}
+@supports (-webkit-background-clip: text) {
+  .news-title h2 {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.news-title p {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+}
+
+/* ニュースリスト */
+.news-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.news-list li {
+  padding: 15px 0;
+}
+
+.news-date {
+  display: block;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 5px;
+}
+
+.news-list a {
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s;
+}
+
+.news-list a:hover {
+  color: #f8df53; /* ゴールドに光る */
+}
+
+/* 区切り線 */
+.news-list hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 10px auto;
+  width: 80%;
+}
+
+/* MOREボタン */
+.news-more {
+  margin-top: 5px;
+  text-align: right;
+  padding-right: 20px; /* ← 余白を追加して少し内側に */
+}
+
+.news-more a {
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+}
+
+.news-more a::before {
+  content: "★";
+  color: #f4e384;
+  margin-right: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .news-section {
+    max-width: 90%;
+  }
+  .news-title h2 {
+    font-size: 28px;
+  }
+  .news-list a {
+    font-size: 14px;
+  }
+}
+.inner {
+  max-width: calc(1100px + 50px);
+  margin: 0 auto;
+}
+@media screen and (min-width: 768px) {
+  .inner {
+    max-width: 1100px;
+    padding: 0 25px;
+  }
+}
+
+/* 背景（アイキャッチ＋ボタンを内包） */
+.background {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  align-items: start; /* 縦を上に固定 */
+  justify-items: center; /* 横を中央 */
+  width: 100vw;
+  height: 100vh;
+}
+
+/* アイキャッチの中にグリッド配置を作る */
+.eyecatch {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  align-items: start; /* ← ここを修正 */
+  width: 100vw;
+  max-width: 100vw;
+  margin: 0 auto;
+}
+
+/* メイン画像（アイキャッチ） */
+.main-image {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center; /* ← ここを追加 */
+}
+
+/* メイン画像の中のボタン */
+.background {
+  display: grid;
+  grid-template-rows: 1fr auto; /* メイン画像 + ボタン */
+  justify-items: center;
+  align-items: end; /* ボタンを下に配置 */
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ボタンのデザイン */
+.character-btn {
+  width: clamp(80px, 10vw, 1200px);
+  height: clamp(80px, 10vw, 1200px);
+  margin: 15px 0;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.character-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.character-btn:hover {
+  transform: scale(1.1);
+}
