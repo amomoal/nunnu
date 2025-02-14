@@ -2,10 +2,10 @@
   "defaultCharacter": "eli",
   "characters": {
     "eli": {
-      "mainImage": "images/elie.jpg",
-      "background": "images/bgeli.webp",
-      "buttonImage": "images/minielie2.png",
-      "defaultButtonImage": "images/minielie.png"
+      "mainImage": "/images/elie.jpg",
+      "background": "/images/bgeli.webp",
+      "buttonImage": "/images/minielie2.png",
+      "defaultButtonImage": "/images/minielie.png"
     },
     "elian": {
       "mainImage": "images/elia.png",

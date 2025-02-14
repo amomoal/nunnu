@@ -5,139 +5,157 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <meta name="format-detection" content="telephone=no" />
   <!-- meta情報 -->
-  <title>MomoSite</title>
+  <title>CodeUps</title>
   <meta name="description" content="" />
-  <meta name="keywords" content="" />
-  <!-- ogp -->
-  <meta property="og:title" content="" />
-  <meta property="og:type" content="" />
-  <meta property="og:url" content="" />
-  <meta property="og:image" content="" />
-  <meta property="og:site_name" content="" />
-  <meta property="og:description" content="" />
+
+
   <!-- ファビコン -->
-  <link rel="icon" href="./images/common/favicon.ico" />
-  <!-- Swiper css -->
-  <link rel="stylesheet" href="./css/swiper-bundle.min.css">  
+  <link rel="icon" href="favicon.ico">
+
   <!-- css -->
   <link rel="stylesheet" href="./css/styles.css">
+
+
+  
+<!-- SwiperのCSS（CDN） -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<!-- SwiperのJS（CDN） -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- 自作の `script.js` はこの後に読み込む -->
+<script type="module" src="./js/script.js"></script>
+
 </head>
 <body>
-  <main class="main">
-    <div class="inner main-view__inner">
-      <div class="main__slider-area">
-        <!-- Slider main container -->
-        <div class="swiper slider01">
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide">
-              <div class="main-slide__body">
-                <img src="./images/character/erienne.webp" alt="erienne">
-              </div>
+
+  <div class="inner">
+
+    <div class="site-container">
+
+      <header class="site-header">
+        <!-- 🔥 PC用ナビ（上に少し出る） -->
+        <nav class="pc-nav">
+          <ul>
+            <li><a href="#">ホーム</a></li>
+            <li><a href="#">プロンプト集</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+          </ul>
+        </nav>
+      
+        <!-- 🔥 モバイル用ハンバーガーメニュー -->
+        <button class="menu-toggle" aria-label="メニューを開く">
+          <span class="menu-icon"></span>
+            <span></span>
+            <span></span>
+          </button>
+          
+        </button>
+      
+        <!-- 🔥 モバイルメニュー（デフォルト非表示） -->
+        <nav class="mobile-menu">
+          <ul>
+            <li><a href="#">ホーム</a></li>
+            <li><a href="#">プロンプト集</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+          </ul>
+        </nav>
+      </header>
+      
+      
+      
+
+      <main class="main-content">
+    
+       <div class="background" id="background"></div>
+
+      <!-- アイキャッチ -->
+          <div class="eyecatch">
+
+      <!-- メイン画像エリア -->
+            <div class="main-image">
+        <img src="images/elie.jpg" alt="メインキャラ" id="mainImage"> 
             </div>
-            <div class="swiper-slide">
-              <div class="main-slide__body">
-                <img src="./images/character/elian.webp" alt="erian">
-              </div>
+         
+        </div>
+
+      <!-- キャラ選択ボタン（JSで動的に追加） -->
+            <div class="button-container">
             </div>
-            <div class="swiper-slide">
-              <div class="main-slide__body">
-                <img src="./images/character/mal.webp" alt="mal">
-              </div>
+
+           <div class="logo-container">
+          <img src="images/logo.webp" alt="サイトロゴ">
+           </div>
+
+      <!-- Newsセクション -->
+      <section class="news-section">
+          <h2>&ndash; NEWS &ndash;</h2>
+        <ul class="news-list"></ul> <!-- JSでここにニュースを追加！ -->
+           <div class="news-more">
+          <a href="#">★ MORE</a>
+           </div>
+      </section>
+
+        <!-- ギャラリー1.２ -->
+        <section class="gallery">
+          <h2 class="gallery-title">&ndash; Gallery 1 &ndash;</h2>
+          <div class="gallery-grid" id="gallery1"></div> <!-- JSで生成 -->
+        </section>
+        
+        <section class="gallery">
+          <h2 class="gallery-title">&ndash; Gallery 2 &ndash;</h2>
+          <div class="gallery-grid" id="gallery2"></div> <!-- JSで生成 -->
+        </section>
+        
+
+        <section class="character-copy">
+          <h2 class="copy-title">&ndash; prompt &ndash;</h2>
+          <div class="inner character-copy__wrap">
+            <select id="fileSelect" class="character-copy__select">
+              <option value="" disabled selected>キャラクターを選択してください</option>
+              <option value="./txt/anje.txt">アンジェリカ</option>
+              <option value="./txt/elie.txt">エリエーヌ</option>
+              <option value="./txt/eliesho.txt">エリエーヌ ショート</option>
+              <option value="./txt/elria.txt">エリアン</option>
+              <option value="./txt/vins.txt">ヴィンセント</option>
+            </select>
+            <div>
+              <button id="copyButton" class="character-copy__button" disabled>コピーする</button>
             </div>
-            <div class="swiper-slide">
-              <div class="main-slide__body">
-                <img src="./images/character/anjye01.webp" alt="anjye">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="main-slide__body">
-                <img src="./images/character/vins01.webp" alt="vins">
-              </div>
+            <div>
+              <p id="statusMessage" class="character-copy__status"></p>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </main>
+        </section>
+      
 
-  <section class="thumbnail">
-    <div class="thumbnail__items">
-      <div class="thumbnail__slider-area">
-        <!-- Slider thumbnail container -->
-        <div class="swiper slider02">
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide">
-              <div class="thumbnail-slide__item">
-                <div class="thumbnail-slide__body">
-                  <picture class="thumbnail-slide__content">
-                    <source type="image/webp" srcset="./src/images/character/mini_elienne01.webp">
-                    <img src="./src/images/character/mini_elienne01.webp" alt="erienne">
-                  </picture>              
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="thumbnail-slide__item">
-                <div class="thumbnail-slide__body">
-                  <picture class="thumbnail-slide__content">
-                    <source type="image/webp" srcset="./src/images/character/mini_elian01.webp">
-                    <img src="./src/images/character/mini_elian01.webp" alt="erian">
-                  </picture>              
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="thumbnail-slide__item">
-                <div class="thumbnail-slide__body">
-                  <picture class="thumbnail-slide__content">
-                    <source type="image/webp" srcset="./src/images/character/mini_elienne02.webp">
-                    <img src="./src/images/character/mini_elienne02.webp" alt="mal">
-                  </picture>              
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="thumbnail-slide__item">
-                <div class="thumbnail-slide__body">
-                  <picture class="thumbnail-slide__content">
-                    <source type="image/webp" srcset="./src/images/character/mini_elienne02.webp">
-                    <img src="./src/images/character/mini_elienne02.webp" alt="mal">
-                  </picture>              
-                </div>
-              </div>
-            </div>
+
+        <section class="site-specs-section">
+          <div class="specs-container">
+            <h2>&ndash; S P E C &ndash;</h2>
+            <ul class="site-specs">
+              <li><strong>使い方：</strong> セッション毎、コピーボックスからコピー Chat GPT へペースト</li>
+              <li><strong>想定：</strong> スマホでの雑談 GPT4o以降</li>
+              <li><strong>注意：</strong> GPTモデル切り替え時設定崩壊</li>
+              <li><strong>更新日:</strong> 2024年2月14日</li>
+              <li><strong>memo:</strong> News、ギャラリー1〜2、spec 文字 spec周りの装飾、コピーボックスどこにやるか、他もう少しごちゃごちゃさせる。ハンバーガー作り、ヴィンスアイコンでの文字色変更</li>
+            </ul>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        </section>
+        
+  
 
-  <section class="character-copy">
-    <div class="inner character-copy__wrap">
-      <select id="fileSelect" class="character-copy__select">
-        <option value="" disabled selected>ファイルを選択してください</option>
-        <option value="./data/anje.txt">アンジェリカ</option>
-        <option value="./data/elie.txt">エリエーヌ</option>
-        <option value="./data/eliesho.txt">エリエーヌ ショート</option>
-        <option value="./data/elria.txt">エリアン</option>
-        <option value="./data/vins.txt">ヴィンセント</option>
-      </select>
-      <div>
-        <button id="copyButton" class="character-copy__button" disabled>コピーする</button>
-      </div>
-      <div>
-        <p id="statusMessage" class="character-copy__status"></p>
-      </div>
-    </div>
-  </section>
-  <!-- Swiper -->
-  <script src="./js/swiper-bundle.min.js"></script>
-  <script src="./js/swiper.js"></script>
-  <!-- JavaScript -->
-  <script defer src="./js/script.js"></script>
+      </main>
+    
+
+<!-- フッター -->
+<footer class="footer-container">
+  <img src="images/footer.webp" alt="フッター画像" class="footer-image">
+</footer>
+
+</div>
+</div>
+<script defer src="./js/copy.js"></script>
 </body>
+
 </html>
