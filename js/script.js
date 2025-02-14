@@ -48,6 +48,18 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// ヘッダー
+document.addEventListener("DOMContentLoaded", function () {
+  const menuToggle = document.querySelector(".menu-toggle");
+  const mobileMenu = document.querySelector(".mobile-menu");
+
+  menuToggle.addEventListener("click", function () {
+    mobileMenu.style.display =
+      mobileMenu.style.display === "block" ? "none" : "block";
+  });
+});
+
+
 // _____________________
 document.addEventListener("DOMContentLoaded", function () {
   const mainImage = document.getElementById("mainImage");

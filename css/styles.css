@@ -111,6 +111,75 @@ select::-ms-expand {
   display: none;
 }
 
+/* 変数があるなら使う */
+/* Mixinがあるなら活用 */
+/* 🔥 全体のフォント設定 */
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* 🔥 h1, h2, h3, p などの基本スタイル */
+h1, h2, h3 {
+  font-weight: bold;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+  font-family: "Shadows Into Light", cursive;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: rgb(255, 81, 0); /* デフォルトの文字色 */
+  background: linear-gradient(90deg, rgba(199, 199, 199, 0.7333333333), #eb7600);
+  text-align: center;
+}
+@supports (-webkit-background-clip: text) {
+  h2 {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* 🔥 h2 の下にラインを追加 */
+h2::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  display: block;
+  margin: 10px auto 0;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* 🔥 強調したい文字 */
+strong {
+  font-weight: bold;
+}
+
+/* 🔥 全ての `li` にスタイルを適用 */
+li {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #cbcbcb;
+  list-style: none; /* 🔥 デフォルトの `・` を消す */
+}
+
 body {
   font-family: "";
 }
@@ -161,7 +230,7 @@ a {
 
 body {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   font-family: "Arial", sans-serif;
@@ -184,74 +253,177 @@ body {
   }
 }
 
-.footer-container {
-  width: 100%; /* 横幅100% */
-  max-width: 1200px; /* 必要なら最大幅を設定 */
-  aspect-ratio: 1/2.2; /* 🔥 横1 : 縦2.2 の比率を固定！ */
-  background-color: #000; /* 背景色（画像がない時のフォールバック） */
+.site-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* 🔥 ヘッダー / メイン（伸びる） / フッター */
+  min-height: 100vh;
+  width: 100%;
+  overflow: visible;
+}
+
+.main-content {
+  flex-grow: 1; /* 🔥 コンテンツが少なくても広がる */
+  min-height: calc(100vh - 80px); /* 🔥 フッターとぶつからないように */
+  padding-bottom: 100px; /* 🔥 余白を確保 */
+}
+
+.inner {
+  max-width: calc(1100px + 50px);
+  margin: 0 auto;
+  display: block;
+}
+@media screen and (min-width: 768px) {
+  .inner {
+    max-width: 1100px;
+    padding: 0 25px;
+  }
+}
+
+/* 🔥 ヘッダー全体 */
+.site-header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* 🔥 PC用ナビ（上に少し出てる） */
+.pc-nav {
+  display: none;
+  width: 100%;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.7); /* 🔥 半透明 */
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* 画像がはみ出ないように */
-  margin: 0 auto; /* 中央配置 */
+  position: fixed;
+  top: -10px; /* 🔥 少し上に出る */
+  left: 0;
+  z-index: 999;
+  transition: top 0.3s ease-in-out;
 }
 
-.footer-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 🔥 画像をコンテナの比率にフィットさせる */
+.pc-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
 }
 
-.site-specs-section {
-  width: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 30px 20px;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  margin-bottom: 50px;
+.pc-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
-.specs-container {
-  max-width: 900px;
-  margin: 0 auto;
+/* 🔥 モバイル用ハンバーガーメニュー（`三`） */
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
 
-.site-specs {
-  word-break: break-word;
-  text-align: left;
+/* `三` のデザイン */
+.menu-icon {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background: white;
+  position: relative;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 3px;
+  background: white;
+  position: absolute;
+  left: 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu-icon::before {
+  top: -8px;
+}
+
+.menu-icon::after {
+  top: 8px;
+}
+
+/* 🔥 モバイルメニュー（デフォルト非表示） */
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  width: 200px;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.mobile-menu ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.site-specs li {
-  margin: 8px 0;
-  font-size: 14px;
-  display: flex; /* 🔥 ラベルと本文を横並びにする */
-  gap: 10px; /* 🔥 ラベルと本文の間隔 */
+.mobile-menu li {
+  padding: 10px 0;
 }
 
-.site-specs li strong {
-  min-width: 80px; /* 🔥 ラベルの幅を固定（調整可能） */
-  text-align: right; /* 🔥 ラベルを右揃え */
-  display: inline-block;
+.mobile-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
 }
 
-.site-container {
-  display: grid;
-  grid-template-rows: auto 1fr auto; /* ヘッダー / メイン / フッター */
-  min-height: 100vh; /* ← `height` ではなく `min-height` を使う */
-  width: 100%;
+/* 🔥 モバイルでは PCナビを隠す */
+@media (max-width: 767px) {
+  .pc-nav {
+    display: none;
+  } /* 🔥 PCナビを隠す */
+}
+/* 🔥 PCでは ハンバーガーを隠す */
+@media (min-width: 768px) {
+  .menu-toggle {
+    display: none;
+  } /* 🔥 `三` を消す */
+  .pc-nav {
+    display: flex;
+  } /* 🔥 PCナビを表示 */
+}
+.background {
+  position: absolute; /* 🔥 画面全体に固定 */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url("images/bgeli.webp") no-repeat center center/cover; /* 🔥 背景画像をカバー表示 */
+  z-index: -1; /* 🔥 他のコンテンツの後ろに配置 */
 }
 
 .logo-container {
   width: 100%;
-  text-align: center; /* ロゴを中央揃え */
-  margin-top: 5px; /* ボタンとの間隔を調整 */
+  text-align: center; /* 🔥 ロゴを中央揃え */
+  margin-top: 10px; /* 🔥 間隔を調整 */
 }
 
 .logo-container img {
-  width: 100%;
+  width: 100%; /* 🔥 画像の最大幅を適切に設定 */
+  width: auto; /* 🔥 必要以上に伸びないようにする */
   height: auto;
+  display: block;
+  margin: 0 auto; /* 🔥 中央揃え */
 }
 
 .news-section {
@@ -261,30 +433,6 @@ body {
   text-align: center;
   color: white;
   font-family: "serif";
-}
-
-/* NEWSタイトル */
-.news-title h2 {
-  font-size: 32px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: white; /* デフォルトの文字色 */
-  background: linear-gradient(90deg, #fce567, #f7d674);
-  text-align: center;
-}
-@supports (-webkit-background-clip: text) {
-  .news-title h2 {
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-}
-
-.news-title p {
-  font-size: 14px;
-  letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 20px;
 }
 
 /* ニュースリスト */
@@ -354,17 +502,6 @@ body {
     font-size: 14px;
   }
 }
-.inner {
-  max-width: calc(1100px + 50px);
-  margin: 0 auto;
-}
-@media screen and (min-width: 768px) {
-  .inner {
-    max-width: 1100px;
-    padding: 0 25px;
-  }
-}
-
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 4列を固定 */
@@ -382,7 +519,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: auto;
   border-radius: 10px;
   transition: transform 0.3s ease-in-out;
 }
@@ -406,7 +543,7 @@ body {
   grid-auto-rows: auto; /* 高さを自動調整 */
   gap: 10px;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 50px 0 20px 0;
 }
 
 /* ギャラリー2 → 4列 × 3行 (9枚, 3枚ずつ表示) */
@@ -416,7 +553,7 @@ body {
   grid-auto-rows: auto;
   gap: 10px;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 20px 0 30px 0;
 }
 
 .lightbox {
@@ -446,23 +583,12 @@ body {
   cursor: pointer; /* 🔥 画像もクリックできるように */
 }
 
-/* 背景（アイキャッチ＋ボタンを内包） */
-.background {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  align-items: start; /* 縦を上に固定 */
-  justify-items: center; /* 横を中央 */
-  width: 100vw;
-  height: 100vh;
-}
-
 /* アイキャッチの中にグリッド配置を作る */
 .eyecatch {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  align-items: start; /* ← ここを修正 */
+  align-items: center;
   width: 100vw;
   max-width: 100vw;
   margin: 0 auto;
@@ -472,7 +598,6 @@ body {
 .main-image {
   width: 100%;
   height: 100%;
-  overflow: hidden;
 }
 
 .main-image img {
@@ -483,22 +608,13 @@ body {
 }
 
 /* メイン画像の中のボタン */
-.background {
-  display: grid;
-  grid-template-rows: 1fr auto; /* メイン画像 + ボタン */
-  justify-items: center;
-  align-items: end; /* ボタンを下に配置 */
-  width: 100vw;
-  height: 100vh;
-}
-
 .button-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 常に4列で均等配置 */
   gap: 10px; /* ボタンの間隔 */
   justify-items: center; /* ボタンを中央揃え */
   width: 100%;
-  max-width: 600px; /* 最大幅を設定 */
+  max-width: 800px; /* 最大幅を設定 */
   margin: 0 auto; /* 中央配置 */
 }
 
@@ -507,7 +623,6 @@ body {
   max-width: 120px; /* ボタンの最大サイズを制限 */
   aspect-ratio: 1/1; /* 正方形を維持 */
   border-radius: 50%;
-  overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }
@@ -521,4 +636,54 @@ body {
 
 .character-btn:hover {
   transform: scale(1.1);
+}
+
+.footer-container {
+  width: 100vw; /* 🔥 画面幅いっぱいに広げる！ */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto; /* 画像がはみ出ないように */
+  margin: 0; /* 余白なし */
+}
+
+.footer-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 🔥 画像をコンテナの比率にフィットさせる */
+}
+
+.site-specs-section {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.14);
+  padding: 30px 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  margin-bottom: 50px;
+}
+
+.specs-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.site-specs {
+  word-break: break-word;
+  text-align: left;
+  list-style: none;
+  padding: 0;
+}
+
+.site-specs li {
+  margin: 8px 0;
+  font-size: 14px;
+  display: flex; /* 🔥 ラベルと本文を横並びにする */
+  gap: 10px; /* 🔥 ラベルと本文の間隔 */
+}
+
+.site-specs li strong {
+  min-width: 80px; /* 🔥 ラベルの幅を固定（調整可能） */
+  text-align: right; /* 🔥 ラベルを右揃え */
+  display: inline-block;
 }

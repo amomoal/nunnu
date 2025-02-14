@@ -33,43 +33,77 @@
 
     <div class="site-container">
 
-    <!-- アイキャッチ -->
-     <div class="background" id="background">
+      <header class="site-header">
+        <!-- 🔥 PC用ナビ（上に少し出る） -->
+        <nav class="pc-nav">
+          <ul>
+            <li><a href="#">ホーム</a></li>
+            <li><a href="#">プロンプト集</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+          </ul>
+        </nav>
+      
+        <!-- 🔥 モバイル用ハンバーガーメニュー -->
+        <button class="menu-toggle" aria-label="メニューを開く">
+          <span class="menu-icon"></span>
+            <span></span>
+            <span></span>
+          </button>
+          
+        </button>
+      
+        <!-- 🔥 モバイルメニュー（デフォルト非表示） -->
+        <nav class="mobile-menu">
+          <ul>
+            <li><a href="#">ホーム</a></li>
+            <li><a href="#">プロンプト集</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+          </ul>
+        </nav>
+      </header>
+      
+      
+      
 
-       <div class="eyecatch">
+      <main class="main-content">
+    
+       <div class="background" id="background"></div>
+
+      <!-- アイキャッチ -->
+          <div class="eyecatch">
 
       <!-- メイン画像エリア -->
-        <div class="main-image">
+            <div class="main-image">
         <img src="images/vins2.webp" alt="メインキャラ" id="mainImage"> 
-        </div>
+            </div>
+         
         </div>
 
       <!-- キャラ選択ボタン（JSで動的に追加） -->
-        <div class="button-container"></div>
+            <div class="button-container">
+            </div>
 
-        <div class="logo-container">
+           <div class="logo-container">
           <img src="images/logo.webp" alt="サイトロゴ">
-        </div>
+           </div>
 
       <!-- Newsセクション -->
       <section class="news-section">
-        <div class="news-title">
-          <h2>NEWS</h2>
-          <p>最新情報</p>
-        </div>
+          <h2>&ndash; NEWS &ndash;</h2>
         <ul class="news-list"></ul> <!-- JSでここにニュースを追加！ -->
-        <div class="news-more">
+           <div class="news-more">
           <a href="#">★ MORE</a>
-        </div>
+           </div>
+      </section>
 
         <!-- ギャラリー1.２ -->
         <section class="gallery">
-          <h2 class="gallery-title">Gallery 1</h2>
+          <h2 class="gallery-title">&ndash; Gallery 1 &ndash;</h2>
           <div class="gallery-grid" id="gallery1"></div> <!-- JSで生成 -->
         </section>
         
         <section class="gallery">
-          <h2 class="gallery-title">Gallery 2</h2>
+          <h2 class="gallery-title">&ndash; Gallery 2 &ndash;</h2>
           <div class="gallery-grid" id="gallery2"></div> <!-- JSで生成 -->
         </section>
         
@@ -77,7 +111,7 @@
 
         <section class="site-specs-section">
           <div class="specs-container">
-            <h2>- S P E C -</h2>
+            <h2>&ndash; S P E C &ndash;</h2>
             <ul class="site-specs">
               <li><strong>使い方：</strong> セッション毎、コピーボックスからコピー Chat GPT へペースト</li>
               <li><strong>想定：</strong> スマホでの雑談 GPT4o以降</li>
@@ -90,12 +124,14 @@
         
   
 
+      </main>
+    
 
 <!-- フッター -->
 <footer class="footer-container">
-  <img src="images/footer.jpg" alt="フッター画像" class="footer-image">
+  <img src="images/footer.webp" alt="フッター画像" class="footer-image">
 </footer>
-</div>
+
 </div>
 </div>
 </body>
