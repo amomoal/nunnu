@@ -127,3 +127,100 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(error => console.error("❌ ニュースの読み込みに失敗:", error));
 });
+
+//  --------------------
+document.addEventListener("DOMContentLoaded", function () {
+  const galleries = [
+    { id: "gallery1", json: "json/gallery.json", maxImages: 12 },
+    { id: "gallery2", json: "json/gallery2.json", maxImages: 9 }
+  ];
+
+  galleries.forEach(gallery => loadGallery(gallery.id, gallery.json, gallery.maxImages));
+});
+
+function loadGallery(galleryId, jsonPath, maxImages) {
+  const galleryGrid = document.getElementById(galleryId);
+  if (!galleryGrid) {
+    console.warn(`❌ ${galleryId} が見つからない！HTMLを確認してくれ！`);
+    return;
+  }
+
+  fetch(jsonPath)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTPエラー！ステータス: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(images => {
+      galleryGrid.innerHTML = ""; // 画像をクリアしてから追加（重複防止）
+
+      images.slice(0, maxImages).forEach(image => {
+        const galleryItem = document.createElement("a");
+        galleryItem.href = image.src;
+        galleryItem.classList.add("gallery-item");
+
+        const img = document.createElement("img");
+        img.src = image.src;
+        img.alt = image.alt;
+
+        galleryItem.appendChild(img);
+        galleryGrid.appendChild(galleryItem);
+      });
+
+      setupLightbox();
+    })
+    .catch(error => console.error(`❌ ${galleryId} の読み込みに失敗:`, error));
+}
+
+function setupLightbox() {
+  const galleryItems = document.querySelectorAll(".gallery-item");
+
+  galleryItems.forEach(item => {
+    item.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const imageUrl = this.href;
+
+      // 既存のライトボックスがあれば削除（念のため）
+      const existingLightbox = document.querySelector(".lightbox");
+      if (existingLightbox) {
+        existingLightbox.remove();
+      }
+
+      // ライトボックスの要素を作成
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      lightbox.innerHTML = `
+        <div class="lightbox-content">
+          <img src="${imageUrl}" alt="拡大画像">
+        </div>
+      `;
+
+      document.body.appendChild(lightbox);
+
+      // 🔥 ライトボックス削除関数（エラー防止）
+      function closeLightbox() {
+        if (document.body.contains(lightbox)) {
+          document.body.removeChild(lightbox);
+        }
+      }
+
+      // 🔥 背景クリックで閉じる
+      lightbox.addEventListener("click", closeLightbox);
+
+      // 🔥 画像クリックで閉じる
+      const lightboxImage = lightbox.querySelector("img");
+      lightboxImage.addEventListener("click", closeLightbox);
+
+      // 🔥 ESCキーで閉じる
+      document.addEventListener("keydown", function escHandler(e) {
+        if (e.key === "Escape") {
+          closeLightbox();
+          document.removeEventListener("keydown", escHandler);
+        }
+      });
+    });
+  });
+}
+

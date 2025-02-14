@@ -160,12 +160,13 @@ a {
 }
 
 body {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   margin: 0;
   padding: 0;
   font-family: "Arial", sans-serif;
   transition: background-image 0.5s ease-in-out;
+  overflow-x: hidden;
 }
 
 .u-desktop {
@@ -183,23 +184,56 @@ body {
   }
 }
 
-.footer {
+.footer-container {
+  width: 100%; /* 横幅100% */
+  max-width: 1200px; /* 必要なら最大幅を設定 */
+  aspect-ratio: 1/2.2; /* 🔥 横1 : 縦2.2 の比率を固定！ */
+  background-color: #000; /* 背景色（画像がない時のフォールバック） */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* 画像がはみ出ないように */
+  margin: 0 auto; /* 中央配置 */
+}
+
+.footer-image {
   width: 100%;
-  height: auto;
-  margin-top: auto; /* ← これでフッターを一番下に */
+  height: 100%;
+  object-fit: cover; /* 🔥 画像をコンテナの比率にフィットさせる */
 }
 
-.footer img {
-  width: 100%; /* 横幅いっぱいに */
-  height: auto; /* アスペクト比を維持 */
-  display: block; /* 不要な余白を削除 */
+.site-specs-section {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 30px 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  margin-bottom: 50px;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  padding: 20px;
+.specs-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.site-specs {
+  word-break: break-word;
+  text-align: left;
+  list-style: none;
+  padding: 0;
+}
+
+.site-specs li {
+  margin: 8px 0;
+  font-size: 14px;
+  display: flex; /* 🔥 ラベルと本文を横並びにする */
+  gap: 10px; /* 🔥 ラベルと本文の間隔 */
+}
+
+.site-specs li strong {
+  min-width: 80px; /* 🔥 ラベルの幅を固定（調整可能） */
+  text-align: right; /* 🔥 ラベルを右揃え */
+  display: inline-block;
 }
 
 .site-container {
@@ -331,6 +365,87 @@ body {
   }
 }
 
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 4列を固定 */
+  grid-template-rows: repeat(4, 1fr); /* 3行に固定 */
+  gap: 10px; /* 画像の間隔 */
+  width: 100%;
+  max-width: 900px; /* 必要なら調整 */
+  margin: 0 auto;
+}
+
+.gallery-item {
+  width: 100%;
+  height: 100%; /* 高さも統一 */
+  aspect-ratio: 1/1; /* 正方形を維持 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 画像の切れを防ぐ */
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+}
+
+/* ギャラリー1 → 4列 × 3行 (12枚) */
+#gallery1 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto; /* 高さを自動調整 */
+  gap: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ギャラリー2 → 4列 × 3行 (9枚, 3枚ずつ表示) */
+#gallery2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 3列にする */
+  grid-auto-rows: auto;
+  gap: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.lightbox img {
+  width: 100%;
+  height: auto;
+  max-width: 90vw;
+  max-height: 90vh;
+  cursor: pointer; /* 🔥 画像もクリックできるように */
+}
+
 /* 背景（アイキャッチ＋ボタンを内包） */
 .background {
   display: grid;
@@ -377,11 +492,20 @@ body {
   height: 100vh;
 }
 
-/* ボタンのデザイン */
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 常に4列で均等配置 */
+  gap: 10px; /* ボタンの間隔 */
+  justify-items: center; /* ボタンを中央揃え */
+  width: 100%;
+  max-width: 600px; /* 最大幅を設定 */
+  margin: 0 auto; /* 中央配置 */
+}
+
 .character-btn {
-  width: clamp(80px, 10vw, 1200px);
-  height: clamp(80px, 10vw, 1200px);
-  margin: 15px 0;
+  width: 100%; /* グリッドの幅いっぱい */
+  max-width: 120px; /* ボタンの最大サイズを制限 */
+  aspect-ratio: 1/1; /* 正方形を維持 */
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
@@ -391,7 +515,7 @@ body {
 .character-btn img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* 画像が切れないように */
   border-radius: 50%;
 }
 
