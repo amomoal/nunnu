@@ -409,13 +409,13 @@ body {
   width: 100vw;
   height: 100vh;
   background: url("") no-repeat center center/cover; /* 🔥 背景画像をカバー表示 */
-  z-index: -1; /* 🔥 他のコンテンツの後ろに配置 */
+  z-index: -10; /* 🔥 他のコンテンツの後ろに配置 */
 }
 
 .logo-container {
   width: 100%;
   text-align: center; /* 🔥 ロゴを中央揃え */
-  margin-top: 10px; /* 🔥 間隔を調整 */
+  margin-top: 8px; /* 🔥 間隔を調整 */
 }
 
 .logo-container img {
@@ -431,7 +431,7 @@ body {
   background: rgba(0, 0, 0, 0.14);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  padding: 50px 20px; /* 🔥 上下の余白を50px、左右に20px */
+  padding: 30px 20px; /* 🔥 上下の余白を50px、左右に20px */
   text-align: center;
   color: white;
   font-family: "serif";
@@ -505,13 +505,24 @@ body {
     font-size: 14px;
   }
 }
+.gallery {
+  width: 100vw; /* 🔥 ビューポート幅いっぱいに広げる */
+  background: rgba(0, 0, 0, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 30px 20px; /* 🔥 上下の余白を50px、左右に20px */
+  text-align: center;
+  color: white;
+  font-family: "serif";
+  margin-top: 50px;
+}
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 4列を固定 */
   grid-template-rows: repeat(4, 1fr); /* 3行に固定 */
   gap: 10px; /* 画像の間隔 */
   width: 100%;
-  max-width: 900px; /* 必要なら調整 */
   margin: 0 auto;
 }
 
@@ -621,16 +632,19 @@ body {
 .button-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 常に4列で均等配置 */
-  gap: 10px; /* ボタンの間隔 */
+  gap: 5px; /* ボタンの間隔 */
   justify-items: center; /* ボタンを中央揃え */
-  width: 100%;
-  max-width: 800px; /* 最大幅を設定 */
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 10px 5px; /* 🔥 上下の余白を50px、左右に20px */
   margin: 0 auto; /* 中央配置 */
+  margin-top: 8px;
 }
 
 .character-btn {
   width: 100%; /* グリッドの幅いっぱい */
-  max-width: 120px; /* ボタンの最大サイズを制限 */
   aspect-ratio: 1/1; /* 正方形を維持 */
   border-radius: 50%;
   cursor: pointer;
@@ -697,6 +711,10 @@ body {
   min-width: 80px; /* 🔥 ラベルの幅を固定（調整可能） */
   text-align: right; /* 🔥 ラベルを右揃え */
   display: inline-block;
+}
+
+.character-copy {
+  color: rgba(1, 1, 1, 0.72); /* ドロップダウンが閉じているときの文字色 */
 }
 
 .copy-title {
